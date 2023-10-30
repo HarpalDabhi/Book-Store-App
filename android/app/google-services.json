@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "522539789265",
+    "project_id": "vidhya-book-store",
+    "storage_bucket": "vidhya-book-store.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522539789265:android:dd21b0400c525897240ef0",
+        "android_client_info": {
+          "package_name": "com.example.bookstore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXftZV6JLR3P4MBHE6GguLJ73nbEJAXio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
