@@ -186,7 +186,15 @@ class _book_collection_screenState extends State<book_collection_screen> {
                             return Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 4, vertical: 4),
-                                child: ClipOval(
+                                child: InkWell(
+                                  onTap: () {
+                                     Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                book_information(recievedData: data,)));
+                                  },
+                                  child: ClipOval(
                                   child: Container(
                                     height: 150, width: 150,
                                     color: Colors.blueAccent,
@@ -194,9 +202,9 @@ class _book_collection_screenState extends State<book_collection_screen> {
                                       data['Image'],
                                       fit: BoxFit.cover,
                                     ),
-                                    // minRadius: 45,
                                   ),
-                                ));
+                                ),)
+                                );
                           },
                         );
                       },
@@ -242,7 +250,15 @@ class _book_collection_screenState extends State<book_collection_screen> {
                             return Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: 4, vertical: 4),
-                                child: ClipOval(
+                                child: InkWell(
+                                  onTap: () {
+                                     Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                book_information(recievedData: data,)));
+                                  },
+                                  child: ClipOval(
                                   child: Container(
                                     height: 150, width: 150,
                                     color: Colors.blueAccent,
@@ -250,9 +266,8 @@ class _book_collection_screenState extends State<book_collection_screen> {
                                       data['Image'],
                                       fit: BoxFit.cover,
                                     ),
-                                    // minRadius: 45,
                                   ),
-                                ));
+                                ),));
                           },
                         );
                       },
