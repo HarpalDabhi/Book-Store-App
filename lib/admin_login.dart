@@ -34,7 +34,7 @@ class _admin_loginState extends State<admin_login> {
     } else {
       try {
      
-        if (email_ == "hdabhi902@rku.ac.in" && pwd_ == "H7173075") {
+        if ((email_ == "hdabhi902@rku.ac.in" && pwd_ == "D31102003")||(email_=="mgoletar902@rku.ac.in" && pwd_=="M03042004")) {
              setState(() {
           isLogin = true;
         });
