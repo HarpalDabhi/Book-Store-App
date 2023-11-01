@@ -1,4 +1,5 @@
 import 'package:bookstore/GradientContainer.dart';
+import 'package:bookstore/book_information.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -10,16 +11,19 @@ class book_collection_screen extends StatefulWidget {
 }
 
 class _book_collection_screenState extends State<book_collection_screen> {
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  List<String> collections = [];
   // @override
- CollectionReference collectionRef = FirebaseFirestore.instance.collection('Biography');
-// QuerySnapshot querySnapshot = collectionRef.get();
-// int documentCount = querySnapshot.docs.length;
+  CollectionReference collectionRef =
+      FirebaseFirestore.instance.collection('Biography');
 
   List<String> items_religious = List.generate(10, (index) => '$index');
   int itemCount_1 = 10;
 
-  void loadMore_religious() {
+  void loadMore_religious() async {
     // Simulate loading more items (e.g., from an API)
+    QuerySnapshot collectionList = await firestore.collectionGroup('_').get();
+    print(collectionList);
     List<String> moreItems1 =
         List.generate(10, (index) => 'Item ${itemCount_1 + index}');
     setState(() {
@@ -76,9 +80,7 @@ class _book_collection_screenState extends State<book_collection_screen> {
               padding: EdgeInsets.all(10),
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 10
-                  ),
+                  SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -88,7 +90,7 @@ class _book_collection_screenState extends State<book_collection_screen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          loadMore_religious();
+                          loadMore_biography();
                         },
                         child: Text(
                           "More",
@@ -115,22 +117,30 @@ class _book_collection_screenState extends State<book_collection_screen> {
                           itemCount: documents.length,
                           itemBuilder: (context, index) {
                             final document = documents[index];
-                            final data = document.data();
+                            Map data = document.data();
                             return Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 4, vertical: 4),
-                              child: ClipOval(
-                                
-                                child: Container(
-                                  height: 150,width: 150,
-                                color: Colors.blueAccent,
-                                child: Image.network(
-                                  data['Image'],fit: BoxFit.cover,
-                                ),
-                                // minRadius: 45,
-                              ),
-                              )
-                            );
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 4, vertical: 4),
+                                child: InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                book_information(recievedData: data,)));
+                                  },
+                                  child: ClipOval(
+                                    child: Container(
+                                      height: 150, width: 150,
+                                      color: Colors.blueAccent,
+                                      child: Image.network(
+                                        data['Image'],
+                                        fit: BoxFit.cover,
+                                      ),
+                                      // minRadius: 45,
+                                    ),
+                                  ),
+                                ));
                           },
                         );
                       },
@@ -157,7 +167,7 @@ class _book_collection_screenState extends State<book_collection_screen> {
                   ),
                   Container(
                     height: 150,
-                    child:StreamBuilder(
+                    child: StreamBuilder(
                       stream: FirebaseFirestore.instance
                           .collection('Historical')
                           .snapshots(),
@@ -174,20 +184,19 @@ class _book_collection_screenState extends State<book_collection_screen> {
                             final document = documents[index];
                             final data = document.data();
                             return Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 4, vertical: 4),
-                              child: ClipOval(
-                                
-                                child: Container(
-                                  height: 150,width: 150,
-                                color: Colors.blueAccent,
-                                child: Image.network(
-                                  data['Image'],fit: BoxFit.cover,
-                                ),
-                                // minRadius: 45,
-                              ),
-                              )
-                            );
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 4, vertical: 4),
+                                child: ClipOval(
+                                  child: Container(
+                                    height: 150, width: 150,
+                                    color: Colors.blueAccent,
+                                    child: Image.network(
+                                      data['Image'],
+                                      fit: BoxFit.cover,
+                                    ),
+                                    // minRadius: 45,
+                                  ),
+                                ));
                           },
                         );
                       },
@@ -202,7 +211,7 @@ class _book_collection_screenState extends State<book_collection_screen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          loadMore_historic();
+                          loadMore_religious();
                         },
                         child: Text(
                           "More",
@@ -231,20 +240,19 @@ class _book_collection_screenState extends State<book_collection_screen> {
                             final document = documents[index];
                             final data = document.data();
                             return Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 4, vertical: 4),
-                              child: ClipOval(
-                                
-                                child: Container(
-                                  height: 150,width: 150,
-                                color: Colors.blueAccent,
-                                child: Image.network(
-                                  data['Image'],fit: BoxFit.cover,
-                                ),
-                                // minRadius: 45,
-                              ),
-                              )
-                            );
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 4, vertical: 4),
+                                child: ClipOval(
+                                  child: Container(
+                                    height: 150, width: 150,
+                                    color: Colors.blueAccent,
+                                    child: Image.network(
+                                      data['Image'],
+                                      fit: BoxFit.cover,
+                                    ),
+                                    // minRadius: 45,
+                                  ),
+                                ));
                           },
                         );
                       },
