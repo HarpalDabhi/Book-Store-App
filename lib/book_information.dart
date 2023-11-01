@@ -1,3 +1,4 @@
+import 'package:bookstore/GradientContainer.dart';
 import 'package:flutter/material.dart';
 
 class book_information extends StatefulWidget {
@@ -12,8 +13,12 @@ class _book_informationState extends State<book_information> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.recievedData['Title'])),
-      backgroundColor: Colors.blueAccent,
+      appBar: AppBar(title: Text(widget.recievedData['Title']),backgroundColor: Colors.blueAccent,),
+      body: Stack(
+        children: [
+          GradientCont(),
+        ],
+      ),
     );
   }
 }
